@@ -18,17 +18,6 @@ object SparkGraphx extends App {
     Edge(3L, 2L, 4), Edge(3L, 5L, 3),
     Edge(4L, 1L, 1), Edge(5L, 3L, 9))
 
-  val conf = new SparkConf().setAppName("SparkGraphx")
-
-  val sc = new SparkContext(conf)
-  val vertexRDD: RDD[(Long, Peep)] = sc.parallelize(vertexArray)
-  val edgeRDD: RDD[Edge[Int]] = sc.parallelize(edgeArray)
-  val g: Graph[Peep, Int] = Graph(vertexRDD, edgeRDD)
-
-  val results = g.triplets.filter(t => t.attr > 7)
-
-  for (triplet <- results.collect) {
-    println(s"${triplet.srcAttr.name} loves ${triplet.dstAttr.name}")
-  }
+	//TODO : Add your code here 
 
 }
