@@ -11,7 +11,13 @@ object WordCount extends App {
     System.exit(1)
   }
 
-  //TODO : Add your code here 
-  
+  val logFile = args(0)
+  val conf = new SparkConf().setAppName("WordCount")
+
+  val sc = new SparkContext(conf)
+  val logData = sc.textFile(logFile, 2).cache()
+  val numApache = logData.filter(line => line.contains("apache")).count()
+  val numSpark = logData.filter(line => line.contains("spark")).count()
+  println("Lines with apache: %s, Lines with spark: %s".format(numApache, numSpark))
 
 }
